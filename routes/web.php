@@ -13,13 +13,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
+
+Route::get('blog/posts/{post}', [App\Http\Controllers\Blog\PostsController::class, 'show'])->name('blog.show');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+Route::middleware(['auth'])->group(function () {
+    
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('categories', 'App\Http\Controllers\CategoriesController');
 Route::resource('posts', 'App\Http\Controllers\PostsController');
+Route::get('trashed-posts', [App\Http\Controllers\PostsController::class, 'trashed'])->name('trashed-posts.index');
+Route::put('restore-posts.{id}', [App\Http\Controllers\PostsController::class, 'restore'])->name('restore-posts.index');
+Route::resource('tags', 'App\Http\Controllers\TagsController');
+
+});
+
+Route::middleware(['auth', 'admin'])->group(function() {
+    Route::get('users', [App\Http\Controllers\UsersController::class, 'index'])->name('users.index');
+    Route::post('users/{user}/make-admin', [App\Http\Controllers\UsersController::class, 'makeAdmin'])->name('users.make-admin');
+    Route::get('users/profile', [App\Http\Controllers\UsersController::class, 'edit'])->name('users.edit-profile');
+    Route::put('users/profile', [App\Http\Controllers\UsersController::class, 'update'])->name('users.update-profile');
+
+});
+

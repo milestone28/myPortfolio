@@ -9,8 +9,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,6 +17,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('css')
 </head>
 <body>
     <div id="app">
@@ -55,6 +55,12 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    
+                                    <a class="dropdown-item" href="{{ route('users.edit-profile') }}">
+                                       
+                                        My Profile
+                                    </a>
+                                                                        
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -82,16 +88,46 @@
                 </div>
                 @endif
 
+                @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+                @endif
+
                 <div class="row">
                     <div class="col-md-4">
 
                         <ul class="list-group">
+
+                           @if(auth()->user()->isAdmin())
+
+                           <li class="list-group-item">
+                            <a href="{{ route('users.index') }}">
+                                Users
+                            </a>
+                        </li>
+
+                            @endif
+
                             <li class="list-group-item">
-                                <a href="{{ route('posts.index') }}">Post</a>
+                                <a href="{{ route('posts.index') }}">Posts</a>
                             </li>
 
                             <li class="list-group-item">
-                                <a href="{{ route('categories.index') }}">Category</a>
+                                <a href="{{ route('categories.index') }}">Categories</a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a href="{{ route('tags.index') }}">Tags</a>
+                            </li>
+
+                        </ul>
+
+                        
+                        <ul class="list-group mt-5">
+                        
+                            <li class="list-group-item">
+                                <a href="{{ route('trashed-posts.index') }}">Trashed Posts</a>
                             </li>
                         </ul>
 
@@ -111,9 +147,12 @@
         </main>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> --}}
+
+        <!-- Scripts deleted defer script in default laravel-->
+        <script src="{{ asset('js/app.js') }}"></script>
 
 @yield('scripts')
 
