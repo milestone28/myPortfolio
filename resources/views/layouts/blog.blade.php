@@ -27,8 +27,8 @@
         <div class="navbar-left">
           <button class="navbar-toggler" type="button">&#9776;</button>
           <a class="navbar-brand" href="{{ route('welcome') }}">
-            <img class="logo-dark" src="{{ asset('img/logo-dark.png') }}" alt="logo">
-            <img class="logo-light" src="{{ asset('img/logo-light.png') }}" alt="logo">
+            <img class="logo-dark" src="{{ asset('img/myLogoBlack.png') }}" alt="logo">
+            <img class="logo-light" src="{{ asset('img/myLogoWhite.png') }}" alt="logo">
           </a>
         </div>
 
@@ -86,6 +86,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/page.min.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f82c1d553ae1105"></script>
 
   </body>
 </html>

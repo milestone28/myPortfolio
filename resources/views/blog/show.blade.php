@@ -47,6 +47,11 @@
               <div class="container">
       
                 {!! $post->content !!}
+
+                
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                <div class="addthis_inline_share_toolbox"></div>
+            
                        
                 <div class="row">
                 
@@ -54,7 +59,7 @@
                         @foreach ($post->tags as $tag)
                             
                         @endforeach
-                      <a class="badge badge-pill badge-secondary" href="#">
+                      <a class="badge badge-pill badge-secondary" href="{{ route('blog.tag',$tag->id) }}">
                           {{ $tag->name }}
                       </a>
                       
