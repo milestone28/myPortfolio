@@ -185,7 +185,7 @@ class PostsController extends Controller
         $post->delete();
        }
         
-        return redirect(route('trashed-posts.index'))->with('status', 'Post deleted successfully');
+        return redirect(route('posts.index'))->with('status', 'Post deleted successfully');
 
     }
 

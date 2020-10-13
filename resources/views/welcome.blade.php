@@ -1,7 +1,7 @@
 @extends('layouts.blog')
 
 @section('title')
-    The Saas Blog
+    The My Portfolio
 @endsection
 
 @section('header')
