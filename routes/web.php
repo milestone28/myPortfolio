@@ -45,11 +45,13 @@ Route::middleware(['auth', 'admin'])->group(function() {
 });
 
 
-Route::get('/test', function(){
+// git init
+// git add README.md
+// git commit -m "first commit"
+// git branch -M main
+// git remote add origin https://github.com/milestone28/myportfolio.git
+// git push -u origin main
 
-    $img = Image::make('4.jpg');
 
-    return $img;
 
-});
 
