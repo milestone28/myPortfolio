@@ -49,7 +49,7 @@
                     @endif
                     
                     <div class="form-group">
-                        <label for="image">Image</label>
+                        <label for="image">Image | upload image high resolution for best view</label>
                         <input type="file" class="form-control" name="image" id="image">
                     </div>
 

@@ -44,3 +44,12 @@ Route::middleware(['auth', 'admin'])->group(function() {
 
 });
 
+
+Route::get('/test', function(){
+
+    $img = Image::make('4.jpg');
+
+    return $img;
+
+});
+

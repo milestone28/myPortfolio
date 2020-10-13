@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Tag;
 use App\Http\Requests\Posts\CreatePostsRequest;
 use App\Http\Requests\Posts\UpdatePostsRequest;
+use Image;
 //use App\Http\Controllers\Storage;
 
 class PostsController extends Controller
@@ -57,6 +58,29 @@ class PostsController extends Controller
         //upload the image
        $image = $request->image->store('posts');
 
+      //image intervention
+//       $image = $request->file('image');
+//       $image_name = time() . '.' . $image->getClientOriginalExtension();
+
+//       $destinationPath = public_path('/thumbnail');
+//             if (!file_exists($destinationPath)) {
+//                 mkdir($destinationPath, 666, true);
+//             }
+    
+//       $resize_image = Image::make($image->getRealPath());
+
+//       $resize_image->resize(120, 60, function($constraint) {
+
+//         $constraint->aspectRatio();
+
+//       })->save($destinationPath . '/' . $image_name);
+
+//       $destinationPath = public_path('/images');
+      
+
+//       $image->move($destinationPath, $image_name);
+
+//    dd($destinationPath . '/' . $image_name)->all();
            
         //create the post
         $post = Post::create([
@@ -161,7 +185,7 @@ class PostsController extends Controller
         $post->delete();
        }
         
-        return redirect(route('posts.index'))->with('status', 'Post deleted successfully');
+        return redirect(route('trashed-posts.index'))->with('status', 'Post deleted successfully');
 
     }
 

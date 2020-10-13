@@ -29,7 +29,7 @@ class CreatePostsRequest extends FormRequest
             'title' => 'required|unique:posts',
             'description' => 'required',
             'content' => 'required',
-            'image' => 'required|image',
+            'image' => 'required|image|mimes:png,jpg,jpeg',
             'category' => 'required'
            //'published_at' => 'required',
         ];
