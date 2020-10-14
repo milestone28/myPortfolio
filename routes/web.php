@@ -39,6 +39,7 @@ Route::resource('tags', 'App\Http\Controllers\TagsController');
 Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('users', [App\Http\Controllers\UsersController::class, 'index'])->name('users.index');
     Route::post('users/{user}/make-admin', [App\Http\Controllers\UsersController::class, 'makeAdmin'])->name('users.make-admin');
+    Route::post('users/{user}/deleteUser', [App\Http\Controllers\UsersController::class, 'deleteUser'])->name('users.deleteUser');
     Route::get('users/profile', [App\Http\Controllers\UsersController::class, 'edit'])->name('users.edit-profile');
     Route::put('users/profile', [App\Http\Controllers\UsersController::class, 'update'])->name('users.update-profile');
 

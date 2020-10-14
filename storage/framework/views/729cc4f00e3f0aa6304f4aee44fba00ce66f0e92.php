@@ -31,7 +31,7 @@
                     <tr>
 
                         <td>
-                            <img src="<?php echo e(asset($post->image)); ?>" alt="image" width="120px" height="60px">
+                            <img src="<?php echo e(asset($post->image)); ?>" alt="<?php echo e($post->image); ?>" width="120px" height="60px">
 
                         </td>
                         <td>

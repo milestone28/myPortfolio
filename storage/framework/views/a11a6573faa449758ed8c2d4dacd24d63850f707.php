@@ -1,6 +1,3 @@
-
-
-
 <?php $__env->startSection('content'); ?>
 
 
@@ -15,7 +12,7 @@
 
             <?php if($users->count() > 0): ?>
 
-            
+
             <table class="table">
                 <thead>
                     <th>Image</th>
@@ -23,6 +20,9 @@
                     <th>Email</th>
                     <th></th>
                     <th></th>
+
+
+
                 </thead>
 
                 <tbody>
@@ -44,41 +44,48 @@
 
                         </td>
 
-                     
+                        <?php if(!$user->isAdmin()): ?>
                         <td>
-                            <?php if(!$user->isAdmin()): ?>
 
-                            <form action="<?php echo e(route('users.make-admin', $user->id)); ?>" method="POST">
-                            <?php echo csrf_field(); ?>
-                                <button type="submit" class="btn btn-success btn-sm float-right">Make Admin</button>
-                            </form>
-                            <?php endif; ?>
+
+                                <form action="<?php echo e(route('users.make-admin', $user->id)); ?>" method="POST">
+                                <?php echo csrf_field(); ?>
+                                    <button type="submit" class="btn btn-success btn-sm float-right">Make Admin</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="<?php echo e(route('users.deleteUser', $user->id)); ?>" method="POST">
+                                    <?php echo csrf_field(); ?>
+                                        <button type="submit" class="btn btn-danger btn-sm float-right">Delete User</button>
+                                    </form>
+
 
                         </td>
-
-                        
-
+                        <?php endif; ?>
+                        <td></td>
+                        <td></td>
 
                     </tr>
-                        
+
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
 
             </table>
                 <?php else: ?>
-             
-               
-                
-            
-               <h3 class="text-center text-muted">No Users Available</h3> 
-            
-                  
-                 
+
+
+
+
+               <h3 class="text-center text-muted">No Users Available</h3>
+
+
+
             <?php endif; ?>
 
         </div>
 
     </div>
-    
+
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\myportfolio\resources\views/users/index.blade.php ENDPATH**/ ?>

@@ -15,7 +15,7 @@ class AddFilenameToPostsTable extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
             //
-            $table->string('filename');
+            $table->string('filename')->nullable();
         });
     }
 
