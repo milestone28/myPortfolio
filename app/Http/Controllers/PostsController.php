@@ -28,9 +28,10 @@ class PostsController extends Controller
     public function index(Post $posts)
     {
         //
-        
+        //return Storage::disk('s3')->response('images/'.$posts->image);
         return view('posts.index')->with('posts',Post::all());
-        
+
+
     }
 
     /**
@@ -41,7 +42,7 @@ class PostsController extends Controller
     public function create()
     {
         //fetch all in category models
-      
+
         return view('posts.create')->with('categories', Category::all())->with('tags', Tag::all());
     }
 
@@ -53,11 +54,12 @@ class PostsController extends Controller
      */
     public function store(CreatePostsRequest $request, Post $post)
     {
-        
+
        //dd($request->all());
         //upload the image
-       $image = $request->image->store('posts');
-
+       ///$image = $request->image->store('posts');
+        $path = $request->file('image')->store('images', 's3');
+        Storage::disk('s3')->setVisibility($path, 'public');
       //image intervention
 //       $image = $request->file('image');
 //       $image_name = time() . '.' . $image->getClientOriginalExtension();
@@ -66,7 +68,7 @@ class PostsController extends Controller
 //             if (!file_exists($destinationPath)) {
 //                 mkdir($destinationPath, 666, true);
 //             }
-    
+
 //       $resize_image = Image::make($image->getRealPath());
 
 //       $resize_image->resize(120, 60, function($constraint) {
@@ -76,27 +78,28 @@ class PostsController extends Controller
 //       })->save($destinationPath . '/' . $image_name);
 
 //       $destinationPath = public_path('/images');
-      
+
 
 //       $image->move($destinationPath, $image_name);
 
 //    dd($destinationPath . '/' . $image_name)->all();
-           
-        //create the post
+
+        //////create the post
         $post = Post::create([
 
             'title' => $request->title,
             'description' => $request->description,
             'content' => $request->content,
-            'image' => $image,
+            'image' => Storage::disk('s3')->url($path),
             'published_at' => $request->published_at,
             'category_id' => $request->category,
-            'user_id' => auth()->user()->id
+            'user_id' => auth()->user()->id,
+            'filename' => $path
 
         ]);
 
-        if ($request->tags){
-            $post->tags()->attach($request->tags);
+         if ($request->tags){
+             $post->tags()->attach($request->tags);
         }
 
         // //flash message
@@ -104,8 +107,8 @@ class PostsController extends Controller
         // //redirect users
 
         return redirect(route('posts.index'))->with('status', 'Post created successfully');
+    //    return $post;
 
-       
     }
 
     /**
@@ -142,7 +145,7 @@ class PostsController extends Controller
     public function update(UpdatePostsRequest $request,Post $post)
     {
         $data = $request->only(['title', 'description', 'published_at', 'content']);
-        
+
         //check if new image
         if ($request->hasFile('image')){
             // update it
@@ -151,7 +154,7 @@ class PostsController extends Controller
             $post->deleteImage();
             $data['image'] = $image;
         }
- 
+
         if($request->tags){
             $post->tags()->sync($request->tags);
         }
@@ -173,19 +176,31 @@ class PostsController extends Controller
     public function destroy($id)
     {
         //
-        
+
 
       $post = Post::withTrashed()->where('id',$id)->firstOrFail();
 
        if ($post->trashed()){
+        /////$path = 'test.txt';
+        /////Storage::disk('s3')->put($path, 'hello');
+      ///// Storage::disk('s3')->delete($path);
+           //return $post->image;
         $post->deleteImage();
            $post->forceDelete();
+
+           if(Storage::disk('s3')->exists($post->filename)) {
+            Storage::disk('s3')->delete($post->filename);
+         }
+
+
+           return redirect(route('trashed-posts.index'))->with('status', 'Post deleted successfully');
        }
        else {
         $post->delete();
-       }
-        
         return redirect(route('posts.index'))->with('status', 'Post deleted successfully');
+       }
+
+        // return redirect(route('posts.index'))->with('status', 'Post deleted successfully');
 
     }
 

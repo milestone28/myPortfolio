@@ -24,7 +24,8 @@ class Post extends Model
         'image',
         'published_at',
         'category_id',
-        'user_id'
+        'user_id',
+        'filename'
     ];
 
     public function deleteImage(){

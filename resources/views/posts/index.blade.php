@@ -17,7 +17,7 @@
 
             @if ($posts->count() > 0)
 
-            
+
             <table class="table">
                 <thead>
                     <th>Image</th>
@@ -34,8 +34,8 @@
                     <tr>
 
                         <td>
-                            <img src="{{ asset("storage/".$post->image) }}" alt="image" width="120px" height="60px">
-                    
+                            <img src="{{ asset($post->image) }}" alt="{{ $post->image }}" width="120px" height="60px">
+
                         </td>
                         <td>
                             {{  $post->title }}
@@ -54,17 +54,17 @@
                                 @csrf
                                 @method('PUT')
                                <button class="btn btn-success btn-sm float-right">Restore</button>
-                                
+
                             </form>
                         </td>
-                           
+
                         @else
 
-                        
+
                         <td>
-                            
+
                             <a href="{{ route('posts.edit',$post->id) }}" class="btn btn-info btn-sm float-right text-light">Edit</a>
-                      
+
                         </td>
 
                         @endif
@@ -80,30 +80,30 @@
                             </form>
                         </td>
 
-                        
+
 
 
                     </tr>
-                        
+
                     @endforeach
                 </tbody>
 
             </table>
                 @else
-             
-               
-                
+
+
+
                @if (Route::current()->getName() == 'trashed-posts.index')
-               <h3 class="text-center text-muted">No Files Deleted</h3> 
+               <h3 class="text-center text-muted">No Files Deleted</h3>
                @else
-               <h3 class="text-center text-muted">No Post Available</h3> 
+               <h3 class="text-center text-muted">No Post Available</h3>
                @endif
-                  
-                 
+
+
             @endif
 
         </div>
 
     </div>
-    
+
 @endsection
