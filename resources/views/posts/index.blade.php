@@ -3,18 +3,21 @@
 
 @section('content')
 
-    <div class="d-flex justify-content-end mb-2">
+    {{-- <div class="d-flex justify-content-end mb-2">
         <a href="{{ route('posts.create') }}" class="btn btn-success">Add Post</a>
-    </div>
+    </div> --}}
 
     <div class="card card-default">
-
+       
         <div class="card-header">
-            Posts
+            Post
+            
+            <a href="{{ route('posts.create') }}" class="btn btn-success float-right {{ Request::is('trashed-posts') ? 'd-none' : '' }}">Add</a>
+           
         </div>
-
+       
         <div class="card-body">
-
+            @include('partials.errors')
             @if ($posts->count() > 0)
 
 
@@ -25,11 +28,11 @@
                     <th>Category</th>
                     <th></th>
                     <th></th>
-                    <th></th>
                 </thead>
 
                 <tbody>
-                    @foreach ($posts as $post)
+               
+                    @foreach ($user->posts as $post)
 
                     <tr>
 

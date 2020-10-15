@@ -3,12 +3,15 @@
 
 @section('content')
 
-    <div class="d-flex justify-content-end mb-2">
+    {{-- <div class="d-flex justify-content-end mb-2">
         <a href="{{ route('categories.create') }}" class="btn btn-success">Add Categories</a>
-    </div>
+    </div> --}}
 
     <div class="card card-default">
-        <div class="card-header">Categories</div>
+        <div class="card-header">
+            Categories
+            <a href="{{ route('categories.create') }}" class="btn btn-success float-right">Add</a>
+        </div>
 
         <div class="card-body">
             @if ($categories->count() > 0)
@@ -18,7 +21,7 @@
                 <thead>
                     <th>Name</th>
                     <th>Posts Count</th>
-                    <th></th>
+                    
                 </thead>
 
                 <tbody>
@@ -33,6 +36,8 @@
                             {{ $category->posts->count() }}
                         </td>
 
+                        @if(auth()->user()->isAdmin())
+
                         <td>
                             <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-info btn-sm  float-right mx-2 text-light">Edit</a>
 
@@ -41,6 +46,7 @@
                              
 
                         </td>
+                        @endif
                         
                     </tr>
                 @endforeach

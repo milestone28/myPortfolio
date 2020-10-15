@@ -20,7 +20,14 @@ class UsersController extends Controller
         $user->role = 'admin';
         $user->save();
 
-        return redirect(route('users.index'))->with('success','User made admin successfully');
+        return redirect(route('users.index'))->with('status','User made admin successfully');
+    }
+
+    public function deleteUser(User $user) {
+         
+        $user->delete();
+
+        return redirect(route('users.index'))->with('status','User deleted successfully');
     }
 
     public function edit() {
@@ -33,9 +40,9 @@ class UsersController extends Controller
 
         $user->update([
             'name' => $request->name,
-        'about' => $request->about
+            'about' => $request->about
         ]);
 
-         return redirect()->back()->with('success', 'User updated successfully.');
+         return redirect()->back()->with('status', 'User updated successfully.');
     }
 }

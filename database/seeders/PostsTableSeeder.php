@@ -21,7 +21,7 @@ class PostsTableSeeder extends Seeder
         //
         $category1 = Category::create([
 
-            'name' => 'News'
+            'name' => 'Website'
 
         ]);
 
@@ -35,7 +35,7 @@ class PostsTableSeeder extends Seeder
 
         $category2 = Category::create([
 
-            'name' => 'Marketing'
+            'name' => 'Software'
 
         ]);
 
@@ -49,7 +49,7 @@ class PostsTableSeeder extends Seeder
 
         $category3 = Category::create([
 
-            'name' => 'Partnership'
+            'name' => 'Android Application'
 
         ]);
 
@@ -100,21 +100,21 @@ class PostsTableSeeder extends Seeder
 
         $tag1 = Tag::create([
 
-            'name' => 'job'
+            'name' => 'Static Website'
 
         ]);
 
 
         $tag2 = Tag::create([
 
-            'name' => 'customers'
+            'name' => 'Dynamic Website'
 
         ]);
 
 
         $tag3 = Tag::create([
 
-            'name' => 'record'
+            'name' => 'E-commerce'
 
         ]);
 

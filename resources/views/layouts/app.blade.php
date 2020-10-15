@@ -94,20 +94,55 @@
                 </div>
                 @endif
 
+
+
+           
+
+                    <div class="row">
+                        <div class="col-4">
+                          <div class="list-group" id="list-tab" role="tablist">
+                            <a class="list-group-item list-group-item-action {{ Request::is('home') ? 'active' : '' }}"  href="{{ route('home') }}"  >Dashboard</a>
+                            @if(auth()->user()->isAdmin())
+                            <a class="list-group-item list-group-item-action {{ Request::is('users') ? 'active' : '' }}"  href="{{ route('users.index') }}"  >Users</a>
+                            @endif
+                            <a class="list-group-item list-group-item-action {{ Request::is('posts') ? 'active' : '' }}"  href="{{ route('posts.index') }}"  >Posts</a>
+                            <a class="list-group-item list-group-item-action {{ Request::is('categories') ? 'active' : '' }}"  href="{{ route('categories.index') }}"  >Categories</a>
+                            <a class="list-group-item list-group-item-action {{ Request::is('tags') ? 'active' : '' }}"  href="{{ route('tags.index') }}"  >Tags</a>
+                          </div>
+
+                          <ul class="list-group mt-5">
+                        
+                            
+                                <a class="list-group-item list-group-item-action {{ Request::is('trashed-posts') ? 'active' : '' }}"  href="{{ route('trashed-posts.index') }}"  >Trashed Posts</a>
+                           
+                        </ul>
+
+                        </div>
+                    
+                    
+                    {{-- </div>
+                  </div>
+
                 <div class="row">
                     <div class="col-md-4">
-
+                        
                         <ul class="list-group">
 
-                           @if(auth()->user()->isAdmin())
 
-                           <li class="list-group-item">
-                            <a href="{{ route('users.index') }}">
-                                Users
-                            </a>
-                        </li>
+                             <li class="list-group-item">
+                                <a href="{{ route('home') }}">Dashboard</a>
+                            </li>
 
-                            @endif
+                            @if(auth()->user()->isAdmin())
+
+                            <li class="list-group-item">
+                                 <a href="{{ route('users.index') }}">
+                                     Users
+                                 </a>
+                             </li>
+ 
+                             @endif
+
 
                             <li class="list-group-item">
                                 <a href="{{ route('posts.index') }}">Posts</a>
@@ -119,7 +154,7 @@
 
                             <li class="list-group-item">
                                 <a href="{{ route('tags.index') }}">Tags</a>
-                            </li>
+                            </li> 
 
                         </ul>
 
@@ -131,7 +166,7 @@
                             </li>
                         </ul>
 
-                    </div>
+                    </div> --}}
 
                     <div class="col-md-8">
                         @yield('content')
@@ -152,7 +187,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> --}}
 
         <!-- Scripts deleted defer script in default laravel-->
-        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}">
+        </script>
+
+       
+           
+         
 
 @yield('scripts')
 

@@ -12,9 +12,9 @@
         </div>
 
         <div class="card-body">
-
+            
             @if ($users->count() > 0)
-
+            @include('partials.errors')
 
             <table class="table">
                 <thead>

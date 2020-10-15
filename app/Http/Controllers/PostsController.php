@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\User;
 use App\Http\Requests\Posts\CreatePostsRequest;
 use App\Http\Requests\Posts\UpdatePostsRequest;
+use Illuminate\Support\Facades\Auth;
 use Image;
 //use App\Http\Controllers\Storage;
 
@@ -27,9 +29,19 @@ class PostsController extends Controller
      */
     public function index(Post $posts)
     {
+        $userID = Auth::id();
+        
         //
         //return Storage::disk('s3')->response('images/'.$posts->image);
-        return view('posts.index')->with('posts',Post::all());
+        $user = User::findOrfail($userID);
+
+        // foreach ($user->posts as $post)
+        // {
+        //     return  $post->image;
+        // }
+        
+         
+       return view('posts.index')->with('posts',Post::all())->with('user',$user);
 
 
     }
@@ -185,11 +197,13 @@ class PostsController extends Controller
         /////Storage::disk('s3')->put($path, 'hello');
       ///// Storage::disk('s3')->delete($path);
            //return $post->image;
-        $post->deleteImage();
-           $post->forceDelete();
-
+       
            if(Storage::disk('s3')->exists($post->filename)) {
             Storage::disk('s3')->delete($post->filename);
+         } else {
+            $post->deleteImage();
+            $post->forceDelete();
+ 
          }
 
 

@@ -3,12 +3,15 @@
 
 @section('content')
 
-    <div class="d-flex justify-content-end mb-2">
+    {{-- <div class="d-flex justify-content-end mb-2">
         <a href="{{ route('tags.create') }}" class="btn btn-success">Add tags</a>
-    </div>
+    </div> --}}
 
     <div class="card card-default">
-        <div class="card-header">tags</div>
+        <div class="card-header">
+            tags
+            <a href="{{ route('tags.create') }}" class="btn btn-success float-right">Add</a>
+        </div>
 
         <div class="card-body">
             @if ($tags->count() > 0)
