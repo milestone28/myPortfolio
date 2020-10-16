@@ -45,7 +45,11 @@
             !-->
             <div class="section" id="section-content">
               <div class="container">
-      
+                
+                {!! $post->description !!}
+
+                <hr>
+                
                 {!! $post->content !!}
 
                 
