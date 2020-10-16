@@ -156,7 +156,7 @@ class PostsController extends Controller
      */
     public function update(UpdatePostsRequest $request,Post $post)
     {
-        ///$data = $request->only(['title', 'description', 'published_at', 'content']);
+        $data = $request->only(['title', 'description', 'published_at', 'content']);
 
 
 
