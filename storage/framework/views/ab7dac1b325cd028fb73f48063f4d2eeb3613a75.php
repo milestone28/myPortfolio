@@ -1,10 +1,7 @@
-
-
-
 <?php $__env->startSection('content'); ?>
 
     <div class="card card-default">
-    
+
         <div class="card-header">
             <?php echo e(isset($post) ? 'Edit Post' : 'Create Post'); ?>
 
@@ -13,7 +10,7 @@
         <div class="card-body">
 
             <?php echo $__env->make('partials.errors', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-            
+
             <form action="<?php echo e(isset($post) ? route('posts.update', $post->id) : route('posts.store')); ?>" method="POST" enctype="multipart/form-data">
                 <?php echo csrf_field(); ?>
                 <?php if(isset($post)): ?>
@@ -41,14 +38,14 @@
                         <label for="published_at">Published At</label>
                         <input type="text" class="form-control" name="published_at" id="published_at" value="<?php echo e(isset($post) ? $post->published_at : ''); ?>">
                     </div>
-                    
+
                     <?php if(isset($post)): ?>
                         <div class="form-group">
-                            <img src="<?php echo e(asset("storage/".$post->image)); ?>" alt="<?php echo e(asset($post->title)); ?>" style="width: 100%">
+                            <img src="<?php echo e(asset($post->image)); ?>" alt="<?php echo e(asset($post->title)); ?>" style="width: 100%">
                         </div>
-                        
+
                     <?php endif; ?>
-                    
+
                     <div class="form-group">
                         <label for="image">Image | upload image high resolution for best view</label>
                         <input type="file" class="form-control" name="image" id="image">
@@ -57,7 +54,7 @@
                     <div class="form-group">
                         <label for="category" >Category</label>
                         <select name="category" id="category" class="form-control">
-                            
+
                                 <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <option value="<?php echo e($category->id); ?>"
                                     <?php if(isset($post)): ?>
@@ -66,33 +63,33 @@
                                         <?php endif; ?>
                                     <?php endif; ?>
 
-                                    > 
+                                    >
                                     <?php echo e($category->name); ?>
 
                                 </option>
-                                    
+
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            
+
                         </select>
-                        
+
                     </div>
 
                 <?php if($tags->count() > 0): ?>
                     <div class="form-group">
-                        
+
                         <label for="tags">Tags</label>
                         <select name="tags[]" id="tags" class="form-control tags-selector" multiple>
                                 <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <option value="<?php echo e($tag->id); ?>"
-                                        
+
                                         <?php if(isset($post)): ?>
 
                                             <?php if($post->hasTag($tag->id)): ?>
 
                                             selected
-                                                
+
                                             <?php endif; ?>
-                                            
+
                                         <?php endif; ?>
 
                                         >
@@ -101,7 +98,7 @@
                                     </option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
-                                                   
+
                     </div>
                 <?php endif; ?>
 
@@ -109,11 +106,11 @@
                         <button type="submit" class="btn btn-success"><?php echo e(isset($post) ? 'Update Post' : 'Create Post'); ?></button>
                     </div>
 
-            </form> 
+            </form>
         </div>
-        
-    </div>   
-    
+
+    </div>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('scripts'); ?>

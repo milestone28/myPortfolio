@@ -30,7 +30,7 @@ class PostsController extends Controller
     public function index(Post $posts)
     {
         $userID = Auth::id();
-        
+
         //
         //return Storage::disk('s3')->response('images/'.$posts->image);
         $user = User::findOrfail($userID);
@@ -39,8 +39,8 @@ class PostsController extends Controller
         // {
         //     return  $post->image;
         // }
-        
-         
+
+
        return view('posts.index')->with('posts',Post::all())->with('user',$user);
 
 
@@ -156,15 +156,23 @@ class PostsController extends Controller
      */
     public function update(UpdatePostsRequest $request,Post $post)
     {
-        $data = $request->only(['title', 'description', 'published_at', 'content']);
+        ///$data = $request->only(['title', 'description', 'published_at', 'content']);
+
+
+
 
         //check if new image
         if ($request->hasFile('image')){
             // update it
-            $image = $request->image->store('posts');
+            //$image = $request->image->store('posts');
+            $path = $request->file('image')->store('images', 's3');
+            Storage::disk('s3')->setVisibility($path, 'public');
+
             // delete old one
-            $post->deleteImage();
-            $data['image'] = $image;
+            Storage::disk('s3')->delete($post->filename);
+            // $post->deleteImage();
+            $data['image'] = Storage::disk('s3')->url($path);
+            //dd($data);
         }
 
         if($request->tags){
@@ -174,7 +182,7 @@ class PostsController extends Controller
         // update attributes
         $post->update($data);
         //redirect user
-        return redirect(route('posts.index'))->with('status', 'Post updated successfully');
+       return redirect(route('posts.index'))->with('status', 'Post updated successfully');
 
 
     }
@@ -197,13 +205,13 @@ class PostsController extends Controller
         /////Storage::disk('s3')->put($path, 'hello');
       ///// Storage::disk('s3')->delete($path);
            //return $post->image;
-       
+
            if(Storage::disk('s3')->exists($post->filename)) {
             Storage::disk('s3')->delete($post->filename);
          } else {
             $post->deleteImage();
             $post->forceDelete();
- 
+
          }
 
 

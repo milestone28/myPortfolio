@@ -28,11 +28,12 @@ class Post extends Model
         'filename'
     ];
 
-    public function deleteImage(){
+    // public function deleteImage(){
 
-        //delete post image from storage
-        Storage::delete($this->image);
-    }
+    //     //delete post image from storage
+    //    // Storage::delete($this->image);
+
+    // }
 
     public function category(){
 
