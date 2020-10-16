@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title'); ?>
     The My Portfolio
 <?php $__env->stopSection(); ?>
@@ -13,9 +11,9 @@
           <div class="col-md-8 mx-auto">
             <p class="lead-2 opacity-90 mt-6">HELLO MY FRIEND, I AM</p>
             <h1 class="text-body">GARY YU</h1>
-            <p class="lead-2 opacity-90 mt-6" >JUNIOR WEB DEVELOPER</p>
-            <p class="lead-2 opacity-90 " >Read and get updated on how we progress</p>
-            
+            <p class="lead-2 opacity-100 mt-6" >Jr Web Developer | Jr Software Engineer</p>
+            <p class="lead-2 opacity-70 " >Read and get updated on how we progress</p>
+
 
           </div>
         </div>
@@ -26,7 +24,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-    
+
     <!-- Main Content -->
     <main class="main-content">
       <div class="section bg-gray">
@@ -41,7 +39,7 @@
                     <div class="col-md-6">
                         <div class="card border hover-shadow-6 mb-6 d-block">
                         <a href="<?php echo e(route('blog.show', $post->id)); ?>"><img class="card-img-top mr-5"  src="<?php echo e($post->image); ?>" alt="Card image cap"></a>
-                        
+
                         <div class="p-6 text-center">
                             <p>
                                 <a class="small-5 text-lighter text-uppercase ls-2 fw-400" href="<?php echo e(route('blog.show', $post->id)); ?>"><?php echo e($post->category->name); ?></a>
@@ -50,7 +48,7 @@
                                 <a class="text-dark" href="<?php echo e(route('blog.show', $post->id)); ?>"><?php echo e($post->title); ?></a></h5>
                         </div>
                         </div>
-                    </div>                        
+                    </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                     <p class="text-center">
                       No Result found for query <strong> <?php echo e(request()->query('search')); ?> </strong>
@@ -69,7 +67,7 @@
 
 
             <?php echo $__env->make('partials.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-           
+
 
           </div>
         </div>

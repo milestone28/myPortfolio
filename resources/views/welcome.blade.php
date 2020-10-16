@@ -13,9 +13,9 @@
           <div class="col-md-8 mx-auto">
             <p class="lead-2 opacity-90 mt-6">HELLO MY FRIEND, I AM</p>
             <h1 class="text-body">GARY YU</h1>
-            <p class="lead-2 opacity-90 mt-6" >JUNIOR WEB DEVELOPER</p>
-            <p class="lead-2 opacity-90 " >Read and get updated on how we progress</p>
-            
+            <p class="lead-2 opacity-100 mt-6" >Jr Web Developer | Jr Software Engineer</p>
+            <p class="lead-2 opacity-70 " >Read and get updated on how we progress</p>
+
 
           </div>
         </div>
@@ -26,7 +26,7 @@
 @endsection
 
 @section('content')
-    
+
     <!-- Main Content -->
     <main class="main-content">
       <div class="section bg-gray">
@@ -41,7 +41,7 @@
                     <div class="col-md-6">
                         <div class="card border hover-shadow-6 mb-6 d-block">
                         <a href="{{ route('blog.show', $post->id) }}"><img class="card-img-top mr-5"  src="{{ $post->image }}" alt="Card image cap"></a>
-                        
+
                         <div class="p-6 text-center">
                             <p>
                                 <a class="small-5 text-lighter text-uppercase ls-2 fw-400" href="{{ route('blog.show', $post->id) }}">{{ $post->category->name }}</a>
@@ -50,7 +50,7 @@
                                 <a class="text-dark" href="{{ route('blog.show', $post->id) }}">{{ $post->title }}</a></h5>
                         </div>
                         </div>
-                    </div>                        
+                    </div>
                 @empty
                     <p class="text-center">
                       No Result found for query <strong> {{ request()->query('search') }} </strong>
@@ -71,7 +71,7 @@
 
 
             @include('partials.sidebar')
-           
+
 
           </div>
         </div>
