@@ -4,7 +4,7 @@
 @section('content')
 
     <div class="card card-default">
-    
+
         <div class="card-header">
             {{ isset($post) ? 'Edit Post' : 'Create Post' }}
         </div>
@@ -12,7 +12,7 @@
         <div class="card-body">
 
             @include('partials.errors')
-            
+
             <form action="{{ isset($post) ? route('posts.update', $post->id) : route('posts.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @if(isset($post))
@@ -40,14 +40,14 @@
                         <label for="published_at">Published At</label>
                         <input type="text" class="form-control" name="published_at" id="published_at" value="{{ isset($post) ? $post->published_at : ''}}">
                     </div>
-                    
+
                     @if (isset($post))
                         <div class="form-group">
-                            <img src="{{ asset("storage/".$post->image) }}" alt="{{ asset($post->title) }}" style="width: 100%">
+                            <img src="{{ asset($post->image) }}" alt="{{ asset($post->title) }}" style="width: 100%">
                         </div>
-                        
+
                     @endif
-                    
+
                     <div class="form-group">
                         <label for="image">Image | upload image high resolution for best view</label>
                         <input type="file" class="form-control" name="image" id="image">
@@ -56,7 +56,7 @@
                     <div class="form-group">
                         <label for="category" >Category</label>
                         <select name="category" id="category" class="form-control">
-                            
+
                                 @foreach ($categories as $category)
                                 <option value="{{ $category->id }}"
                                     @if (isset($post))
@@ -65,32 +65,32 @@
                                         @endif
                                     @endif
 
-                                    > 
+                                    >
                                     {{ $category->name }}
                                 </option>
-                                    
+
                                 @endforeach
-                            
+
                         </select>
-                        
+
                     </div>
 
                 @if ($tags->count() > 0)
                     <div class="form-group">
-                        
+
                         <label for="tags">Tags</label>
                         <select name="tags[]" id="tags" class="form-control tags-selector" multiple>
                                 @foreach ($tags as $tag)
                                     <option value="{{ $tag->id }}"
-                                        
+
                                         @if (isset($post))
 
                                             @if ($post->hasTag($tag->id))
 
                                             selected
-                                                
+
                                             @endif
-                                            
+
                                         @endif
 
                                         >
@@ -98,7 +98,7 @@
                                     </option>
                                 @endforeach
                         </select>
-                                                   
+
                     </div>
                 @endif
 
@@ -106,11 +106,11 @@
                         <button type="submit" class="btn btn-success">{{ isset($post) ? 'Update Post' : 'Create Post' }}</button>
                     </div>
 
-            </form> 
+            </form>
         </div>
-        
-    </div>   
-    
+
+    </div>
+
 @endsection
 
 @section('scripts')
