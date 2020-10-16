@@ -25,6 +25,18 @@ class PostsTableSeeder extends Seeder
 
         ]);
 
+        $category2 = Category::create([
+
+            'name' => 'Software'
+
+        ]);
+
+        $category3 = Category::create([
+
+            'name' => 'Android Application'
+
+        ]);
+
         $author1 = User::create([
 
             'name' => 'John Wicked',
@@ -33,23 +45,11 @@ class PostsTableSeeder extends Seeder
 
         ]);
 
-        $category2 = Category::create([
-
-            'name' => 'Software'
-
-        ]);
-
         $author2 = User::create([
 
             'name' => 'Johny Sins',
             'email' => 'JW2@gmail.com',
             'password' => Hash::make('password')
-
-        ]);
-
-        $category3 = Category::create([
-
-            'name' => 'Android Application'
 
         ]);
 
@@ -66,8 +66,8 @@ class PostsTableSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'category_id' => $category1->id,
-            'image' => 'https://milestonemybucket.s3.ap-southeast-1.amazonaws.com/images/1.jpg',
-            'filename' => 'https://milestonemybucket.s3.ap-southeast-1.amazonaws.com/images/1.jpg'
+            'image' => 'posts/1.jpg',
+            'filename' => null
         ]);
 
         $post2 = $author2->posts()->create([
@@ -75,8 +75,8 @@ class PostsTableSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'category_id' => $category2->id,
-            'image' => 'https://milestonemybucket.s3.ap-southeast-1.amazonaws.com/images/2.jpg',
-            'filename' => 'https://milestonemybucket.s3.ap-southeast-1.amazonaws.com/images/2.jpg'
+            'image' => 'posts/2.jpg',
+            'filename' => null
         ]);
 
         $post3 = $author3->posts()->create([
@@ -84,8 +84,8 @@ class PostsTableSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'category_id' => $category3->id,
-            'image' => 'https://milestonemybucket.s3.ap-southeast-1.amazonaws.com/images/3.jpg',
-            'filename' => 'https://milestonemybucket.s3.ap-southeast-1.amazonaws.com/images/3.jpg'
+            'image' => 'posts/3.jpg',
+            'filename' => null
         ]);
 
         $post3 = $author1->posts()->create([
@@ -93,8 +93,8 @@ class PostsTableSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'category_id' => $category2->id,
-            'image' => 'https://milestonemybucket.s3.ap-southeast-1.amazonaws.com/images/4.jpg',
-            'filename' => 'https://milestonemybucket.s3.ap-southeast-1.amazonaws.com/images/4.jpg'
+            'image' => 'posts/4.jpg',
+            'filename' => null
         ]);
 
 
