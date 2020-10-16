@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\TagsController\Request;
 use App\Models\Tag;
-use App\Http\Requests\Tags\CreateTagRequest;
+use App\Http\Requests\Tags\CreateTagsRequest;
 use App\Http\Requests\Tags\UpdateTagsRequest;
+
 
 class TagsController extends Controller
 {
@@ -38,15 +39,15 @@ class TagsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateTagRequest $request,Tag $tag)
+    public function store(CreateTagsRequest $request,Tag $tag)
     {
         //
-       
+
 
       Tag::create([
-          
+
         'name' => $request->name
-          
+
           ]);
 
       return redirect(route('tags.index'))->with('status', 'Tag created successfully!');
@@ -88,7 +89,7 @@ class TagsController extends Controller
         //
 
 
-        $Tag->update([
+        $tag->update([
             'name' => $request->name
         ]);
 
@@ -109,7 +110,7 @@ class TagsController extends Controller
             session()->flash('error', 'Tag cannot be deleted, because it is associated to some posts.');
             return redirect()->back();
         }
-       
+
         $tag->delete();
 
         return redirect(route('tags.index'))->with('status', 'Tag deleted successfully!');
